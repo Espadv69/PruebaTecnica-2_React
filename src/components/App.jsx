@@ -1,11 +1,20 @@
-import './css/App.css'
+import './App.css'
 
 function App() {
 
 
   return (
     <main>
-      Hola mundo
+      <form className="form">
+        <label>
+          BUSCADOR DE PELÍCULAS.
+        <input placeholder="Avengers, Star Wars, The matrix..." />
+        </label>
+
+        <button>
+          Buscar
+        </button>
+      </form>
     </main>
   )
 }
