@@ -5,6 +5,12 @@
   align-items: center;
 }
 
+.error {
+  text-align: center;
+  color: #ff0000bc;
+  font-weight: bold;
+}
+
 main {
   margin-top: 2rem;
   display: flex;
