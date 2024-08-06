@@ -58,18 +58,16 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='page'>
       <header>
         <form className='form' onSubmit={handleSubmit}>  {/* Form for submitting search queries */}
-          <label>
-            MOVIE SEARCHER.  {/* Label for the search input */}
+
             <input 
               onChange={handleChange}  // Update state on input change
               value={search}  // Set input value to the current search state
               name='search'  // Name of the input field
               placeholder='Avengers, Star Wars, The matrix...'  // Placeholder text for the input field
             />
-          </label>
 
           <button>Search</button>  {/* Button to submit the search form */}
         </form>
