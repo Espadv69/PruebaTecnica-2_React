@@ -40,18 +40,18 @@ function useSearch() {
 
 // Main App component
 function App() {
-  // Get movie data from the custom hook useMovies
-  const { movies } = useMovies()
   // Get search state, update function, and error from the custom hook useSearch
   const { search, updateSearch, error } = useSearch()
+  // Get movie data from the custom hook useMovies
+  const { movies, getMovies } = useMovies({ search })
 
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault()  // Prevent the default form submission behavior
-    console.log({ search })  // Log the search query to the console
-    updateSearch('')  // Clear the search input field after submission
+    getMovies()  // Log the search query to the console
+    // updateSearch('')  // Clear the search input field after submission
   }
-
+  
   // Handle changes in the search input field
   const handleChange = (event) => {
     updateSearch(event.target.value)  // Update the search state with the new value
