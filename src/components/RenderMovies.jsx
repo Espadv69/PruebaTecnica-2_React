@@ -19,9 +19,11 @@ function NoMoviesResults() {
 }
 
 export function MoviesRender({ movies }) {  
+  // Check if there are movies to display
   const hasMovies = movies?.length > 0;
   
   return (
+    // Conditionally render either the ListOfMovies component or the NoMoviesResults component based on the presence of movies
     hasMovies
       ? <ListOfMovies movies={movies} />
       : <NoMoviesResults />
