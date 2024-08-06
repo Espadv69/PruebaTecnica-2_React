@@ -1,10 +1,12 @@
-main {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.form {
+main {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
