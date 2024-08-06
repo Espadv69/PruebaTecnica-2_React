@@ -24,6 +24,11 @@ main {
   margin-bottom: 1rem;
 }
 
+.error {
+  font-weight: 700;
+  color: red;
+}
+
 .movies {
 
   list-style: none;
@@ -38,7 +43,7 @@ main {
 }
 
 .movie {
-  padding: .5rem .2rem;
+  padding: .2rem .2rem;
   border: 1px solid white;
   background: #0000003d;
   text-align: center;
@@ -54,11 +59,14 @@ main {
     margin-bottom: 1rem;
   }
   img {
-    box-sizing: content-box;
     height: 300px;
     border-radius: 8px;
-    object-fit: contain;
+    object-fit: cover;
     padding: 0;
     margin: 0;
   }
+}
+
+input:focus {
+  box-shadow: none;
 }

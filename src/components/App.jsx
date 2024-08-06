@@ -63,6 +63,7 @@ function App() {
         <form className='form' onSubmit={handleSubmit}>  {/* Form for submitting search queries */}
 
             <input 
+              style={error && {border: '1px solid red', color: 'red'}}
               onChange={handleChange}  // Update state on input change
               value={search}  // Set input value to the current search state
               name='search'  // Name of the input field
