@@ -40,16 +40,21 @@ function useSearch() {
 
 // Main App component
 function App() {
+  const [sort, setSort] = useState(false)
   // Get search state, update function, and error from the custom hook useSearch
   const { search, updateSearch, error } = useSearch()
   // Get movie data from the custom hook useMovies
-  const { movies, loading, getMovies } = useMovies({ search })
+  const { movies, loading, getMovies } = useMovies({ search, sort })
 
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault()  // Prevent the default form submission behavior
     getMovies()  // Log the search query to the console
     // updateSearch('')  // Clear the search input field after submission
+  }
+
+  const handleSort = () => {
+    setSort(!sort)
   }
 
   // Handle changes in the search input field
@@ -69,6 +74,8 @@ function App() {
             name='search'  // Name of the input field
             placeholder='Avengers, Star Wars, The matrix...'  // Placeholder text for the input field
           />
+
+          <input type='checkbox' onChange={handleSort} checked={sort} />
 
           <button>Search</button>  {/* Button to submit the search form */}
         </form>
