@@ -1,41 +1,38 @@
-import { useState, useRef, useMemo } from 'react'  // Import necessary hooks from React
-import { searchMovies } from '../../services/movies'  // Import the searchMovies function from the services
+import { useState, useRef, useMemo } from 'react'
+import { searchMovies } from '../../services/movies'
 
-// Custom hook to handle movie search and sorting logic
 export function useMovies({ search, sort }) {
-  const [movies, setMovies] = useState([])  // State to store the list of movies
-  const [loading, setLoading] = useState(false)  // State to manage loading status
-  const [error, setError] = useState(null)  // State to store any error messages
-  const previousSearch = useRef(search)  // useRef to keep track of the previous search term
+  const [movies, setMovies] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const previousSearch = useRef(search)
 
-  // useMemo to memoize the getMovies function to prevent unnecessary re-creations
   const getMovies = useMemo(() => {
-    return async ({ search }) => {  // Async function to get movies based on the search term
-      if (search === previousSearch.current) return  // If the search term is the same as the previous one, do nothing
+    return async ({ search }) => {
+      if (search === previousSearch.current) return
 
       try {
-        setLoading(true)  // Set loading state to true while fetching movies
-        previousSearch.current = search  // Update the previous search term
-        const newMovies = await searchMovies({ search })  // Fetch new movies based on the search term
-        setMovies(newMovies)  // Update the movies state with the fetched movies
+        setLoading(true)
+        previousSearch.current = search
+        const newMovies = await searchMovies({ search })
+        setMovies(newMovies)
       } catch (e) {
-        setError(e.message)  // If an error occurs, set the error state with the error message
+        setError(e.message)
       } finally {
-        setLoading(false)  // Set loading state to false after fetching is done (either success or failure)
+        setLoading(false)
       }
-      
-      console.log('getMovies')  // Log the function call for debugging purposes
     }
-  }, [])  // Empty dependency array ensures this function is only created once
+  }, []) 
 
-  // useMemo to memoize the sortedMovies computation based on the sort state and movies array
   const sortedMovies = useMemo(() => {
-    console.log('sortedMovie')  // Log the sorting action for debugging purposes
+    console.log('sortedMovie')
     return sort
-      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))  // If sort is true, return a sorted copy of the movies array
-      : movies  // If sort is false, return the original movies array
-  }, [sort, movies])  // Dependencies are sort and movies
+      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+      : movies
+  }, [sort, movies])
 
-  // Return the sorted movies array, getMovies function, loading state, and error state
+
+
+  // Return the mapped movies array
   return { movies: sortedMovies, getMovies, loading, error }
 }

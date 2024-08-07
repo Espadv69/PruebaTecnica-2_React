@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './App.css'  // Import CSS styles for the application
-import { useState, useEffect, useRef } from 'react'  // Import React hooks: useState, useEffect, and useRef
+import { useState, useEffect, useRef, useCallback } from 'react'  // Import React hooks: useState, useEffect, useRef, useCallback
 import { MoviesRender } from './RenderMovies.jsx'  // Import the MoviesRender component to display movies
 import { useMovies } from './hooks/useMovies.js'  // Import the useMovies custom hook to fetch movie data
+import debounce from 'just-debounce-it'
 
 // Custom hook to handle search logic
 function useSearch() {
@@ -46,6 +48,13 @@ function App() {
   // Get movie data from the custom hook useMovies
   const { movies, loading, getMovies } = useMovies({ search, sort })
 
+  const debouncedGetMovies = useCallback(
+    debounce(search => {
+      console.log('Search', search)
+      getMovies({ search })
+    }, 500), [getMovies]
+  )
+
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault()  // Prevent the default form submission behavior
@@ -59,7 +68,9 @@ function App() {
 
   // Handle changes in the search input field
   const handleChange = (event) => {
-    updateSearch(event.target.value)  // Update the search state with the new value
+    const newSearch = event.target.value
+    updateSearch(newSearch)  // Update the search state with the new value
+    debouncedGetMovies(newSearch)
   }
 
   return (
