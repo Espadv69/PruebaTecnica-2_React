@@ -43,7 +43,7 @@ function App() {
   // Get search state, update function, and error from the custom hook useSearch
   const { search, updateSearch, error } = useSearch()
   // Get movie data from the custom hook useMovies
-  const { movies, getMovies } = useMovies({ search })
+  const { movies, loading, getMovies } = useMovies({ search })
 
   // Handle form submission
   const handleSubmit = (event) => {
@@ -76,8 +76,9 @@ function App() {
       </header>
 
       <main>
-        {/* Render the MoviesRender component, passing the movie data as a prop */}
-        <MoviesRender movies={movies} />
+        {
+          loading ? <p>Loading...</p> : <MoviesRender movies={movies} />
+        }
       </main>
     </div>
   )
