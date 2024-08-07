@@ -51,7 +51,7 @@ function App() {
     getMovies()  // Log the search query to the console
     // updateSearch('')  // Clear the search input field after submission
   }
-  
+
   // Handle changes in the search input field
   const handleChange = (event) => {
     updateSearch(event.target.value)  // Update the search state with the new value
@@ -62,13 +62,13 @@ function App() {
       <header>
         <form className='form' onSubmit={handleSubmit}>  {/* Form for submitting search queries */}
 
-            <input 
-              style={error && {border: '1px solid red', color: 'red'}}
-              onChange={handleChange}  // Update state on input change
-              value={search}  // Set input value to the current search state
-              name='search'  // Name of the input field
-              placeholder='Avengers, Star Wars, The matrix...'  // Placeholder text for the input field
-            />
+          <input
+            style={error && { border: '1px solid red', color: 'red' }}
+            onChange={handleChange}  // Update state on input change
+            value={search}  // Set input value to the current search state
+            name='search'  // Name of the input field
+            placeholder='Avengers, Star Wars, The matrix...'  // Placeholder text for the input field
+          />
 
           <button>Search</button>  {/* Button to submit the search form */}
         </form>
