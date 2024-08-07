@@ -49,7 +49,7 @@ function App() {
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault()  // Prevent the default form submission behavior
-    getMovies()  // Log the search query to the console
+    getMovies({ search })  // Log the search query to the console
     // updateSearch('')  // Clear the search input field after submission
   }
 
