@@ -12,6 +12,6 @@ Crear una aplicación para buscar películas
 - Haz que la película se muestre en un grid responsive. ✅
 
 **Primera iteración:**
-- Evitar que se haga la misma búsqueda dos veces seguidas.
+- Evitar que se haga la misma búsqueda dos veces seguidas. ✅
 - Haz que la busqueda se haga automáticamente al escribir.
 - Evitar que se haga la búsqueda continuamente al escribir (debounce) 
